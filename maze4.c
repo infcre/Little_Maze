@@ -32,7 +32,7 @@
 
 #define MAX_SIZE 100
 #define SAVE_FILE "maze_save.bin"
-#define TIMEOUT_SEC 600
+#define TIMEOUT_SEC 60
 
 #pragma pack(push, 1)
 typedef struct {
@@ -79,6 +79,9 @@ int race_algo_done = 0;
 int user_solving = 0;
 int timed_out = 0;
 int use_color = 0;
+
+int current_stage = 0; // 0: Draw, 1: Check, 2: Play
+char last_msg[256] = "Welcome...";
 
 // 颜色定义
 enum { C_WALL = 1, C_PATH, C_START, C_END, C_ALGO, C_USER, C_CURSOR, C_BG, C_DEAD, C_AI };
@@ -151,11 +154,22 @@ void init_game() {
     curs_set(0);
     init_colors_if_possible();
 
-    printw("Maze Size (3-50): ");
-    refresh();
     int internal;
+    WINDOW *box_win = newwin(5, 40, (LINES-5)/2, (COLS-40)/2);
+    box(box_win, 0, 0);
+    mvwprintw(box_win, 1, 2, "=== Maze Setup ===");
+    mvwprintw(box_win, 2, 2, "Enter Maze Size (3-50): ");
+    wrefresh(box_win);
     echo();
-    scanw("%d", &internal);
+    curs_set(1);
+    mvwscanw(box_win, 2, 26, "%d", &internal);
+    curs_set(0);
+    noecho();
+    delwin(box_win);
+
+    clear();
+    refresh();
+
     noecho();
     if (internal < 3) internal = 3;
     if (internal > 50) internal = 50;
@@ -166,7 +180,7 @@ void init_game() {
 // 模块化：创建窗口
 void setup_windows() {
     int maze_h = size + 2;
-    int maze_w = size + 2;
+    int maze_w = size * 2 + 2;
     int info_w = 32; // 侧边栏宽度
     int total_w = maze_w + info_w + 2;
 
@@ -193,7 +207,7 @@ void draw_maze() {
     box(main_win, 0, 0);
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            int y = i+1, x = j+1;
+            int y = i+1, x = j*2+1;
             chtype ch = ' ';
             int color = C_PATH;
             int is_special = 0;
@@ -213,13 +227,14 @@ void draw_maze() {
                     color = C_CURSOR;
                     ch = 'X';
                     is_special = 1;
-                } else if (user_path[i][j]) {
+                }
+                if (user_path[i][j]) {
                     color = C_USER;
-                    ch = ACS_DIAMOND;
+                    ch = ' ';
                     is_special = 1;
                 } else if (path[i][j]) {
                     color = C_ALGO;
-                    ch = ACS_ULCORNER;
+                    ch = ' ';
                     is_special = 1;
                 } else if (is_start) {
                     color = C_START;
@@ -231,18 +246,19 @@ void draw_maze() {
                     is_special = 1;
                 } else if (visited[i][j] == 2) {
                     color = C_DEAD;
-                    ch = ACS_BULLET;
+                    ch = ' ';
                     is_special = 1;
                 } else if (maze[i][j] == 1) {
                     color = C_WALL;
-                    ch = ACS_CKBOARD;
+                    ch = ' ';
                     is_special = 1;
                 } else {
                     color = C_PATH;
-                    ch = ACS_HLINE;
+                    ch = ' ';
                 }
                 wbkgdset(main_win, COLOR_PAIR(color));
                 mvwaddch(main_win, y, x, ch);
+                mvwaddch(main_win, y, x+1, ' ');
                 wbkgdset(main_win, COLOR_PAIR(C_BG));
             } else {
                 if (is_ai) ch = 'O';
@@ -254,6 +270,7 @@ void draw_maze() {
                 else if (maze[i][j] == 1) ch = '#';
                 else ch = '.';
                 mvwaddch(main_win, y, x, ch);
+                mvwaddch(main_win, y, x+1, ' ');
             }
         }
     }
@@ -261,9 +278,36 @@ void draw_maze() {
 }
 
 // ---------- 信息栏 (右侧) ----------
+void update_stage(int new_stage) {
+    if (new_stage > current_stage) {
+        int max_w = getmaxx(info_win) - 2;
+        int start_w = (current_stage + 1) * max_w / 3;
+        int end_w = (new_stage + 1) * max_w / 3;
+        // 非线性动画 (二次方曲线)
+        for (int i = start_w + 1; i <= end_w; i++) {
+            double p = (double)(i - start_w) / (end_w - start_w);
+            double p_nl = p * p; 
+            int curr_w = start_w + (int)(p_nl * (end_w - start_w));
+            mvwhline(info_win, 8, 1, ACS_CKBOARD, curr_w);
+            wrefresh(info_win);
+            napms(15);
+        }
+    }
+    current_stage = new_stage;
+    show_info(NULL);
+}
+
+
 void show_info(const char *msg) {
     werase(info_win);
     box(info_win, 0, 0);
+
+    if (msg && *msg) {
+        strncpy(last_msg, msg, sizeof(last_msg)-1);
+    } else if (last_msg[0] == '\0') {
+        strcpy(last_msg, "Ready...");
+    }
+
     double el = elapsed_seconds();
     int mm = (int)el / 60;
     int ss = (int)el % 60;
@@ -284,18 +328,38 @@ void show_info(const char *msg) {
     // 分隔线
     mvwhline(info_win, 4, 1, ACS_HLINE, getmaxx(info_win)-2);
 
-    // 第5行：主要消息
-    if (msg && *msg) {
-        print_right(info_win, 5, "%s", msg);
-    } else {
-        print_right(info_win, 5, "Ready...");
+    print_right(info_win, 5, "%s", last_msg);
+
+    mvwhline(info_win, 6, 1, ACS_HLINE, getmaxx(info_win)-2);
+
+    // 游戏进度条
+    mvwprintw(info_win, 7, 1, "Game Progress:");
+    int max_w = getmaxx(info_win) - 2;
+    int bar_w = (current_stage + 1) * max_w / 3;
+    for (int i = 1; i <= bar_w; i++) {
+        mvwaddch(info_win, 8, i, ACS_CKBOARD);
     }
 
-    // 底部提示
-    mvwprintw(info_win, getmaxy(info_win)-2, 1, "z/x:Edit u:Manual s:AI");
-    print_right(info_win, getmaxy(info_win)-2, "a:Race b:Save l:Load");
-    mvwprintw(info_win, getmaxy(info_win)-1, 1, "i:Hint c:Check r:Reset");
-    print_right(info_win, getmaxy(info_win)-1, "q:Quit");
+    mvwprintw(info_win, 9, 1, "1.Draw 2.Check 3.Play");
+
+    // 赛跑超时进度条
+    if (race_mode) {
+        int time_left = TIMEOUT_SEC - (int)el;
+        if (time_left < 0) time_left = 0;
+        int race_bar_w = time_left * max_w / TIMEOUT_SEC;
+        mvwprintw(info_win, 11, 1, "Race Timeout:");
+        for (int i = 1; i <= race_bar_w; i++) {
+            mvwaddch(info_win, 12, i, ACS_CKBOARD | COLOR_PAIR(C_DEAD));
+        }
+    }
+
+
+    // 调整排版后的按键提示
+    mvwprintw(info_win, getmaxy(info_win)-4, 1, "[1]z/x:Edit  [2]u:Manual");
+    mvwprintw(info_win, getmaxy(info_win)-3, 1, "[3]s:AI      [4]a:Race");
+    mvwprintw(info_win, getmaxy(info_win)-2, 1, "[5]b:Save    [6]l:Load");
+    mvwprintw(info_win, getmaxy(info_win)-1, 1, "[7]i:Hint [8]c:Check [9]r:Reset");
+
 
     wrefresh(info_win);
 }
@@ -513,6 +577,9 @@ void race_mode_run() {
                 algo_winner = 1;
                 race_algo_done = 1;
                 for (int i = 0; i <= top; i++) path[stack[i].row][stack[i].col] = 1;
+            } else if (elapsed_seconds() >= TIMEOUT_SEC) {
+                show_info("Race Timeout! AI Wins.");
+                algo_winner = 1;
             } else {
                 int found = 0;
                 for (int d = 0; d < 4; d++) {
@@ -634,13 +701,15 @@ void game_loop() {
                 reset_paths();
                 draw_maze();
                 solve_maze_internal(1);
+                update_stage(2);
                 break;
             case 'c':
                 show_info(maze_solvable() ? "Solvable" : "No Path");
                 napms(1500);
+                update_stage(1);
                 break;
             case 'u':
-                if (maze_solvable()) user_solve_mode();
+                if (maze_solvable()) user_solve_mode();update_stage(2);
                 else show_info("No Path");
                 break;
             case 'i':
@@ -663,7 +732,18 @@ void game_loop() {
                 break;
             case 'a':
                 race_mode_run();
+                update_stage(2);
                 break;
+            // 数字键功能解释
+            case '1': show_info("[1] z/x: Draw walls/paths"); break;
+            case '2': show_info("[2] u: Enter manual solve mode"); break;
+            case '3': show_info("[3] s: AI auto-solve"); break;
+            case '4': show_info("[4] a: Race against AI"); break;
+            case '5': show_info("[5] b: Save game"); break;
+            case '6': show_info("[6] l: Load game"); break;
+            case '7': show_info("[7] i: Sprinkle inspiration"); break;
+            case '8': show_info("[8] c: Check if solvable"); break;
+            case '9': show_info("[9] r: Reset maze"); break;
         }
 
         check_timeout();
