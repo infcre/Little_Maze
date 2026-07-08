@@ -278,23 +278,21 @@ void draw_maze() {
 }
 
 // ---------- 信息栏 (右侧) ----------
-void update_stage(int new_stage) {
-    if (new_stage > current_stage) {
-        int max_w = getmaxx(info_win) - 2;
-        int start_w = (current_stage + 1) * max_w / 3;
-        int end_w = (new_stage + 1) * max_w / 3;
-        // 非线性动画 (二次方曲线)
-        for (int i = start_w + 1; i <= end_w; i++) {
-            double p = (double)(i - start_w) / (end_w - start_w);
-            double p_nl = p * p; 
-            int curr_w = start_w + (int)(p_nl * (end_w - start_w));
-            mvwhline(info_win, 8, 1, ACS_CKBOARD, curr_w);
-            wrefresh(info_win);
-            napms(15);
-        }
+void set_stage(int new_stage) {
+    int max_w = getmaxx(info_win) - 2;
+    int start_w = current_stage * max_w / 3;
+    int end_w = new_stage * max_w / 3;
+    if (start_w == end_w) {
+        current_stage = new_stage;
+        return;
+    }
+    int step = (start_w < end_w) ? 1 : -1;
+    for (int i = start_w; i != end_w; i += step) {
+        mvwhline(info_win, 8, 1, ACS_CKBOARD, i);
+        wrefresh(info_win);
+       napms(10);
     }
     current_stage = new_stage;
-    //show_info(NULL);
 }
 
 
@@ -335,7 +333,7 @@ void show_info(const char *msg) {
     // 游戏进度条
     mvwprintw(info_win, 7, 1, "Game Progress:");
     int max_w = getmaxx(info_win) - 2;
-    int bar_w = (current_stage + 1) * max_w / 3;
+    int bar_w = current_stage * max_w / 3;
     for (int i = 1; i <= bar_w; i++) {
         mvwaddch(info_win, 8, i, ACS_CKBOARD);
     }
@@ -544,6 +542,7 @@ void race_mode_run() {
         show_info("No solution!");
         return;
     }
+    set_stage(3);
     race_mode = 1;
     race_user_done = 0;
     race_algo_done = 0;
@@ -639,6 +638,7 @@ void race_mode_run() {
     nodelay(main_win, FALSE);
     race_mode = 0;
     timer_running = 0;
+    set_stage(2);
 }
 
 // ---------- 主程序 (侧边栏布局 + 模块化) ----------
@@ -690,6 +690,7 @@ void game_loop() {
                 if ((cursor_r==1&&cursor_c==1) || (cursor_r==size-2&&cursor_c==size-2)) break;
                 maze[cursor_r][cursor_c] = 1;
                 reset_paths();
+                if (current_stage == 0) set_stage(1); // 画下第一笔
                 break;
             case 'x':
             case 'e':
@@ -701,16 +702,20 @@ void game_loop() {
                 reset_paths();
                 draw_maze();
                 solve_maze_internal(1);
-                update_stage(2);
+                set_stage(2);
                 break;
             case 'c':
-                show_info(maze_solvable() ? "Solvable" : "No Path");
+                if(maze_solvable()) {
+                    show_info("Solvable");
+                    if (current_stage == 0) set_stage(2);
+                } else {
+                    show_info("No Path");
+                }
                 napms(1500);
-                update_stage(1);
                 break;
             case 'u':
                 if (maze_solvable()) {
-                    user_solve_mode();update_stage(2);
+                    user_solve_mode();set_stage(2);
                 }
                 else {
                     show_info("No Path");
@@ -726,6 +731,7 @@ void game_loop() {
                 cursor_r=1; cursor_c=1;
                 timer_running=0; timed_out=0; race_mode=0;
                 show_info("Reset");
+                set_stage(0);
                 napms(1000);
                 break;
             case 'b':
@@ -737,7 +743,6 @@ void game_loop() {
                 break;
             case 'a':
                 race_mode_run();
-                update_stage(2);
                 break;
             // 数字键功能解释
             case '1': show_info("[1] z/x: Draw walls/paths"); break;
