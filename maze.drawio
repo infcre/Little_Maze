@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" pages="5">
+<mxfile host="app.diagrams.net" pages="6">
   <diagram name="第 1 页" id="a9OmpTvZ_yvFZBbtLhbZ">
     <mxGraphModel dx="2402" dy="1532" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -512,7 +512,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="nVmZ_cI26DtFR9sYQCMv" name="第 5 页">
-    <mxGraphModel dx="1716" dy="1094" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1334" dy="851" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -741,6 +741,109 @@
         </mxCell>
         <mxCell id="5W2sl-InqeOOcmVmyqdI-59" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="否" vertex="1">
           <mxGeometry height="30" width="60" x="510" y="720" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="xxuH_1w8iqz6qJmFopI9" name="第 6 页">
+    <mxGraphModel dx="702" dy="588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n_EABBP3CnE-pz46BJLu-11" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="方向键按下" vertex="1">
+          <mxGeometry height="60" width="120" x="330" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-13" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-14" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-2" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="当前的模式是？" vertex="1">
+          <mxGeometry height="80" width="80" x="350" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-12" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="计算新坐标" vertex="1">
+          <mxGeometry height="60" width="120" x="330" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-19" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="更新光标坐标" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-15" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-16" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="400" />
+              <mxPoint x="260" y="110" />
+            </Array>
+            <mxPoint x="220" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-5" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="新坐标是否有效" vertex="1">
+          <mxGeometry height="80" width="80" x="280" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-17" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="410" />
+              <mxPoint x="540" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-18" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-6" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="新坐标是否有效" vertex="1">
+          <mxGeometry height="80" width="80" x="440" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-25" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="更新光标坐标" vertex="1">
+          <mxGeometry height="60" width="120" x="420" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-20" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="n_EABBP3CnE-pz46BJLu-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-24" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-8" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="新坐标是否到达终点" vertex="1">
+          <mxGeometry height="80" width="80" x="280" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-23" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;停止计时&lt;/div&gt;&lt;div&gt;退出用户求解模式&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-26" edge="1" parent="1" source="n_EABBP3CnE-pz46BJLu-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="n_EABBP3CnE-pz46BJLu-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="650" />
+              <mxPoint x="600" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="刷新迷宫的显示" vertex="1">
+          <mxGeometry height="60" width="120" x="420" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="n_EABBP3CnE-pz46BJLu-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="刷新迷宫的显示&lt;br&gt;显示迷宫已解决" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="770" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
