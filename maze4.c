@@ -294,7 +294,7 @@ void update_stage(int new_stage) {
         }
     }
     current_stage = new_stage;
-    show_info(NULL);
+    //show_info(NULL);
 }
 
 
