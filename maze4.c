@@ -709,8 +709,13 @@ void game_loop() {
                 update_stage(1);
                 break;
             case 'u':
-                if (maze_solvable()) user_solve_mode();update_stage(2);
-                else show_info("No Path");
+                if (maze_solvable()) {
+                    user_solve_mode();update_stage(2);
+                }
+                else {
+                    show_info("No Path");
+                    napms(1500);
+                }
                 break;
             case 'i':
                 sprinkle_inspiration();
