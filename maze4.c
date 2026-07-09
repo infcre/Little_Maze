@@ -437,7 +437,14 @@ int maze_solvable() {
 }
 
 int user_solve_mode() {
-    if (!maze_solvable()) { show_info("No solution."); return 0; }
+    if (!maze_solvable()) {
+        show_info("No solution.");
+        napms(500);
+        show_info(" ");
+        napms(500);
+        show_info("No solution.");
+        return 0; 
+        }
     user_solving = 1;
     reset_paths();
     cursor_r = 1; cursor_c = 1;
