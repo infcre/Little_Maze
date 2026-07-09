@@ -559,7 +559,7 @@
         <mxCell id="5W2sl-InqeOOcmVmyqdI-30" edge="1" parent="1" source="5W2sl-InqeOOcmVmyqdI-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="5W2sl-InqeOOcmVmyqdI-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5W2sl-InqeOOcmVmyqdI-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="按键轮训主循环" vertex="1">
+        <mxCell id="5W2sl-InqeOOcmVmyqdI-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="按键轮询主循环" vertex="1">
           <mxGeometry height="110" width="110" x="210" y="420" as="geometry" />
         </mxCell>
         <mxCell id="5W2sl-InqeOOcmVmyqdI-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="结束窗口" vertex="1">
