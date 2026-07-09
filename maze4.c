@@ -205,7 +205,7 @@ void init_game() {
         mvwprintw(menu_win, 16, 2, "--- Controls Guide ---");
         mvwprintw(menu_win, 17, 4, "Arrows: Move Cursor");
         mvwprintw(menu_win, 18, 4, "z: Draw Wall   x: Draw Path");
-        mvwprintw(menu_win, 19, 4, "s: AI Auto-Solve with demo animation)");
+        mvwprintw(menu_win, 19, 4, "s: AI Auto-Solve with demo animation");
         mvwprintw(menu_win, 20, 4, "u: User Manual Solve and timer starts");
         mvwprintw(menu_win, 21, 4, "c: Check if maze has solution");
         mvwprintw(menu_win, 22, 4, "i: Sprinkle Inspiration (Random walls/paths)");
@@ -709,7 +709,7 @@ void game_loop() {
             case KEY_RIGHT: if (cursor_c < size-2) cursor_c++; break;
             case 'z': if ((cursor_r==1&&cursor_c==1) || (cursor_r==size-2&&cursor_c==size-2)) break; maze[cursor_r][cursor_c] = 1; reset_paths(); if (current_stage == 0) set_stage(1); break;
             case 'x': case 'e': if ((cursor_r==1&&cursor_c==1) || (cursor_r==size-2&&cursor_c==size-2)) break; maze[cursor_r][cursor_c] = 0; reset_paths(); break;
-            case 's': reset_paths(); draw_maze(); solve_maze_internal(1); set_stage(2); break;
+            case 's': if (maze_solvable()) { reset_paths(); draw_maze(); solve_maze_internal(1); set_stage(2); } else { show_info("No Path"); napms(500); show_info(" "); napms(500); show_info("No Path"); } break;
             case 'c': if(maze_solvable()) { show_info("Solvable"); napms(500); show_info(" "); napms(500); show_info("Solvable"); if (current_stage == 1) set_stage(2); } else { if (current_stage == 2) set_stage(1); show_info("No Path"); napms(500); show_info(" "); napms(500); show_info("No Path"); } napms(1500); break;
             case 'u': if (maze_solvable()) { user_solve_mode(); set_stage(3); } else { show_info("No Path"); napms(500); show_info(" "); napms(500); show_info("No Path"); } break;
             case 'i': sprinkle_inspiration(); if (current_stage == 0) set_stage(1); break;
