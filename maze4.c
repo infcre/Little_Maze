@@ -169,7 +169,7 @@ void init_game() {
         box(menu_win, 0, 0);
         keypad(menu_win, TRUE);
 
-        mvwprintw(menu_win, 1, 2, "=== Maze Game Setup ===");
+        mvwprintw(menu_win, 1, 2, "--- Maze ---");
         
         // 显示选项
         mvwprintw(menu_win, 3, 4, "[N] New Game");
@@ -178,12 +178,12 @@ void init_game() {
         // 详细操作说明
         mvwprintw(menu_win, 6, 2, "--- Controls Guide ---");
         mvwprintw(menu_win, 7, 4, "Arrows: Move Cursor");
-        mvwprintw(menu_win, 8, 4, "z: Draw Wall   x: Draw Path   e: Erase (Reset to Path)");
-        mvwprintw(menu_win, 9, 4, "s: AI Auto-Solve (Demo animation)");
-        mvwprintw(menu_win, 10, 4, "u: User Manual Solve (Timer starts)");
+        mvwprintw(menu_win, 8, 4, "z: Draw Wall   x: Draw Path");
+        mvwprintw(menu_win, 9, 4, "s: AI Auto-Solve with demo animation)");
+        mvwprintw(menu_win, 10, 4, "u: User Manual Solve and timer starts");
         mvwprintw(menu_win, 11, 4, "c: Check if maze has solution");
         mvwprintw(menu_win, 12, 4, "i: Sprinkle Inspiration (Random walls/paths)");
-        mvwprintw(menu_win, 13, 4, "a: Race Mode (You vs AI)");
+        mvwprintw(menu_win, 13, 4, "a: Race Mode (User vs AI)");
         mvwprintw(menu_win, 14, 4, "r: Reset   b: Save   l: Load   q: Quit");
 
         if (choice == -1) {
