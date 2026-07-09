@@ -631,8 +631,8 @@
         <mxCell id="5W2sl-InqeOOcmVmyqdI-42" edge="1" parent="1" source="5W2sl-InqeOOcmVmyqdI-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=1;entryDx=0;entryDy=0;" target="5W2sl-InqeOOcmVmyqdI-4">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="10" y="680" />
-              <mxPoint x="10" y="503" />
+              <mxPoint x="107" y="680" />
+              <mxPoint x="107" y="503" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -728,6 +728,9 @@
         </mxCell>
         <mxCell id="NY7FIs6SAFsLaVsWTvOl-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="用户求解" vertex="1">
           <mxGeometry height="60" width="120" x="530" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="cFXv3FANuAnwr7MRztJ3-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="其它所有按键" vertex="1">
+          <mxGeometry height="30" width="60" x="754" y="497" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
