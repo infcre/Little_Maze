@@ -37,6 +37,21 @@
 #define SAVE_FILE "maze_save.bin"
 #define TIMEOUT_SEC 60
 
+const char *maze_art[] = {
+"      ___           ___           ___           ___     ",
+"     /\\  \\         /\\  \\         /\\__\\         /\\__\\    ",
+"    |::\\  \\       /::\\  \\       /::|  |       /:/ _/_   ",
+"    |:|:\\  \\     /:/\\:\\  \\     /:/:|  |      /:/ /\\__\\  ",
+"  __|:|\\:\\  \\   /:/ /::\\  \\   /:/|:|  |__   /:/ /:/ _/_ ",
+" /::::|_\\:\\__\\ /:/_/:/\\:\\__\\ /:/ |:| /\\__\\ /:/_/:/ /\\__\\",
+" \\:\\~~\\  \\/__/ \\:\\/:/  \\/__/ \\/__|:|/:/  / \\:\\/:/ /:/  /",
+"  \\:\\  \\        \\::/__/          |:/:/  /   \\::/_/:/  / ",
+"   \\:\\  \\        \\:\\  \\          |::/  /     \\:\\/:/  /  ",
+"    \\:\\__\\        \\:\\__\\         |:/  /       \\::/  /   ",
+"     \\/__/         \\/__/         |/__/         \\/__/    ",
+};
+
+
 #pragma pack(push, 1)
 typedef struct {
     int size;
@@ -159,7 +174,7 @@ void init_game() {
     // 循环菜单，直到做出有效选择
     while (1) {
         clear();
-        int h = 18; // 增加高度以容纳详细说明
+        int h = 29; // 增加高度以容纳详细说明
         int w = 60;
         int y = (LINES - h) / 2;
         int x = (COLS - w) / 2;
@@ -169,22 +184,33 @@ void init_game() {
         box(menu_win, 0, 0);
         keypad(menu_win, TRUE);
 
-        mvwprintw(menu_win, 1, 2, "--- Maze ---");
+        mvwprintw(menu_win, 1, 2, maze_art[0]);
+        mvwprintw(menu_win, 2, 2, maze_art[1]);
+        mvwprintw(menu_win, 3, 2, maze_art[2]);
+        mvwprintw(menu_win, 4, 2, maze_art[3]);
+        mvwprintw(menu_win, 5, 2, maze_art[4]);
+        mvwprintw(menu_win, 6, 2, maze_art[5]);
+        mvwprintw(menu_win, 7, 2, maze_art[6]);
+        mvwprintw(menu_win, 8, 2, maze_art[7]);
+        mvwprintw(menu_win, 9, 2, maze_art[8]);
+        mvwprintw(menu_win, 10, 2, maze_art[9]);
+        mvwprintw(menu_win, 11, 2, maze_art[10]);
+
         
         // 显示选项
-        mvwprintw(menu_win, 3, 4, "[N] New Game");
-        mvwprintw(menu_win, 4, 4, "[L] Load Game from '%s'", SAVE_FILE);
+        mvwprintw(menu_win, 14, 4, "[N] New Game");
+        mvwprintw(menu_win, 15, 4, "[L] Load Game from '%s'", SAVE_FILE);
         
         // 详细操作说明
-        mvwprintw(menu_win, 6, 2, "--- Controls Guide ---");
-        mvwprintw(menu_win, 7, 4, "Arrows: Move Cursor");
-        mvwprintw(menu_win, 8, 4, "z: Draw Wall   x: Draw Path");
-        mvwprintw(menu_win, 9, 4, "s: AI Auto-Solve with demo animation)");
-        mvwprintw(menu_win, 10, 4, "u: User Manual Solve and timer starts");
-        mvwprintw(menu_win, 11, 4, "c: Check if maze has solution");
-        mvwprintw(menu_win, 12, 4, "i: Sprinkle Inspiration (Random walls/paths)");
-        mvwprintw(menu_win, 13, 4, "a: Race Mode (User vs AI)");
-        mvwprintw(menu_win, 14, 4, "r: Reset   b: Save   l: Load   q: Quit");
+        mvwprintw(menu_win, 16, 2, "--- Controls Guide ---");
+        mvwprintw(menu_win, 17, 4, "Arrows: Move Cursor");
+        mvwprintw(menu_win, 18, 4, "z: Draw Wall   x: Draw Path");
+        mvwprintw(menu_win, 19, 4, "s: AI Auto-Solve with demo animation)");
+        mvwprintw(menu_win, 20, 4, "u: User Manual Solve and timer starts");
+        mvwprintw(menu_win, 21, 4, "c: Check if maze has solution");
+        mvwprintw(menu_win, 22, 4, "i: Sprinkle Inspiration (Random walls/paths)");
+        mvwprintw(menu_win, 23, 4, "a: Race Mode (User vs AI)");
+        mvwprintw(menu_win, 24, 4, "r: Reset   b: Save   l: Load   q: Quit");
 
         if (choice == -1) {
             mvwprintw(menu_win, 16, 4, "Error: No save file found or invalid file!");
