@@ -327,7 +327,7 @@ void show_info(const char *msg) {
     mvwprintw(info_win, 9, 1, "1.Draw 2.Check 3.Play"); 
     
     // 赛跑超时进度条 
-    if (race_mode) { 
+    if (race_mode || user_solving) { 
         int time_left = TIMEOUT_SEC - (int)el; 
         if (time_left < 0) time_left = 0; 
         int race_bar_w = time_left * max_w / TIMEOUT_SEC; 
@@ -436,6 +436,10 @@ int user_solve_mode() {
     timer_running = 1; 
     start_time = time(NULL); 
     draw_maze(); 
+    show_info("Manual Mode Started");
+    napms(500);
+    show_info(" ");
+    napms(500);
     show_info("Manual Mode Started"); 
     return 1; 
 } 
@@ -467,7 +471,11 @@ void sprinkle_inspiration() {
     } 
     reset_paths(); 
     draw_maze(); 
-    show_info("Map Sprinkled"); 
+    show_info("Map Sprinkled");
+    napms(500); 
+    show_info(" ");
+    napms(500);
+    show_info("Map Sprinkled");
 } 
 
 void save_progress() { 
@@ -507,7 +515,11 @@ void save_progress() {
 int load_progress() { 
     int fd = open(SAVE_FILE, O_RDONLY); 
     if (fd < 0) { 
-        show_info("No Save File"); 
+        show_info("No Save File");
+        napms(500);
+        show_info(" ");
+        napms(500);
+        show_info("No Save File");
         return 0; 
     } 
     SaveData data; 
@@ -727,24 +739,36 @@ void game_loop() {
                 break; 
             case 'c': 
                 if(maze_solvable()) { 
-                    show_info("Solvable"); 
+                    show_info("Solvable");
+                    napms(500); 
+                    show_info(" ");
+                    napms(500);
+                    show_info("Solvable");
                     if (current_stage == 1) set_stage(2); 
                 } else {
                     if (current_stage == 2) set_stage(1);
-                    show_info("No Path"); 
+                    show_info("No Path");
+                    napms(500);
+                    show_info(" ");
+                    napms(500);
+                    show_info("No Path");
                 } 
                 napms(1500); 
                 break; 
             case 'u': 
                 if (maze_solvable()) { 
-                    user_solve_mode(); set_stage(2); 
+                    user_solve_mode(); set_stage(3); 
                 } else { 
-                    show_info("No Path"); 
-                    napms(1500); 
+                    show_info("No Path");
+                    napms(500);
+                    show_info(" ");
+                    napms(500);
+                    show_info("No Path");
                 } 
                 break; 
             case 'i': 
-                sprinkle_inspiration(); 
+                sprinkle_inspiration();
+                if (current_stage == 0) set_stage(1); 
                 break; 
             case 'r': 
                 init_maze(); 
