@@ -870,6 +870,12 @@
         <mxCell id="4QwmGOsWpz_czajNpiKi-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="是" vertex="1">
           <mxGeometry height="30" width="60" x="236" y="564" as="geometry" />
         </mxCell>
+        <mxCell id="4QwmGOsWpz_czajNpiKi-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="是" vertex="1">
+          <mxGeometry height="30" width="60" x="277" y="391" as="geometry" />
+        </mxCell>
+        <mxCell id="4QwmGOsWpz_czajNpiKi-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="是" vertex="1">
+          <mxGeometry height="30" width="60" x="488" y="388" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
