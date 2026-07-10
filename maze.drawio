@@ -35,11 +35,11 @@
         <mxCell id="_pHa7DujLou8tbNMwuhF-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" value="&lt;div&gt;询问用户迷宫大小&lt;/div&gt;&lt;div&gt;设置画布尺寸&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="140" y="315" as="geometry" />
         </mxCell>
-        <mxCell id="DNK36YYIZGj3ZSagN-VM-4" edge="1" parent="1" source="_pHa7DujLou8tbNMwuhF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" target="_pHa7DujLou8tbNMwuhF-31">
+        <mxCell id="VFmHoRzy2ocMfrmQtdiV-1" edge="1" parent="1" source="_pHa7DujLou8tbNMwuhF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="_pHa7DujLou8tbNMwuhF-31">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="656" y="793" />
-              <mxPoint x="656" y="513" />
+              <mxPoint x="647" y="793" />
+              <mxPoint x="647" y="513" />
               <mxPoint x="736" y="513" />
             </Array>
           </mxGeometry>
@@ -98,12 +98,13 @@
         <mxCell id="_pHa7DujLou8tbNMwuhF-64" edge="1" parent="1" source="_pHa7DujLou8tbNMwuhF-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=14;" target="_pHa7DujLou8tbNMwuhF-17">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="h0tUmACDC_CIozT9A6j2-2" edge="1" parent="1" source="_pHa7DujLou8tbNMwuhF-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontSize=14;">
+        <mxCell id="VFmHoRzy2ocMfrmQtdiV-3" edge="1" parent="1" source="_pHa7DujLou8tbNMwuhF-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="_pHa7DujLou8tbNMwuhF-31">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="655" y="813" />
+              <mxPoint x="652" y="813" />
+              <mxPoint x="652" y="573" />
             </Array>
-            <mxPoint x="654.8889567057295" y="698.3333333333335" as="targetPoint" />
+            <mxPoint x="659" y="573" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="_pHa7DujLou8tbNMwuhF-15" parent="1" style="rhombus;whiteSpace=wrap;html=1;fontSize=14;" value="用户光标成功到达终点？" vertex="1">
@@ -263,7 +264,7 @@
           <mxGeometry height="30" width="60" x="686" y="623" as="geometry" />
         </mxCell>
         <mxCell id="_pHa7DujLou8tbNMwuhF-92" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=14;" value="否" vertex="1">
-          <mxGeometry height="30" width="60" x="630" y="913" as="geometry" />
+          <mxGeometry height="30" width="60" x="626" y="812" as="geometry" />
         </mxCell>
         <mxCell id="_pHa7DujLou8tbNMwuhF-93" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=14;" value="是" vertex="1">
           <mxGeometry height="30" width="60" x="796" y="713" as="geometry" />
